@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gesture Controlled Particles</title>
+    <style>
+      body {
+        margin: 0;
+        overflow: hidden;
+        background-color: #000;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      }
+      #canvas-container {
+        width: 100vw;
+        height: 100vh;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 1;
+      }
+      #video-container {
+        position: absolute;
+        bottom: 20px;
+        left: 20px;
+        width: 160px;
+        height: 120px;
+        z-index: 2;
+        border: 2px solid rgba(255, 255, 255, 0.3);
+        border-radius: 8px;
+        overflow: hidden;
+        transform: scaleX(-1); /* Mirror effect */
+      }
+      #video-container.fullscreen {
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        bottom: auto;
+        border: none;
+        border-radius: 0;
+        z-index: 0;
+        opacity: 1.0; /* HD Clarity */
+      }
+      #webcam {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        /* Beauty Filter: Cold White & Soft Skin
+           - Brightness(1.25): Strong whitening
+           - Saturate(0.85): Reduce yellow tone
+           - Hue-rotate(3deg): Shift yellow slightly to pink/rosy
+           - Contrast(0.95): Soften shadows/wrinkles
+           - Blur(0.5px): Dermabrasion/Smoothing effect
+        */
+        filter: brightness(1.25) saturate(0.85) hue-rotate(3deg) contrast(0.95) blur(0.5px);
+      }
+      #ui-container {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        z-index: 3;
+        color: white;
+        pointer-events: none;
+      }
+      .title {
+        font-size: 24px;
+        font-weight: bold;
+        text-shadow: 0 0 10px rgba(0,0,0,0.5);
+        margin-bottom: 5px;
+      }
+      .subtitle {
+        font-size: 14px;
+        opacity: 0.8;
+        text-shadow: 0 0 10px rgba(0,0,0,0.5);
+      }
+      #loading {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: white;
+        font-size: 20px;
+        z-index: 10;
+        pointer-events: none;
+        transition: opacity 0.5s;
+      }
+      /* Lil-gui positioning */
+      .lil-gui.root {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        z-index: 3;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="loading">Loading Models...</div>
+    <div id="canvas-container"></div>
+
+    <div id="ui-container">
+      <div class="title">操控说明</div>
+      <div class="subtitle">
+        <div>🖐️ 左手: 捏合缩放 (Zoom)</div>
+        <div>✋ 右手: 移动旋转 (Rotate) | 捏合选择 (Select) | 双捏详情 (Detail)</div>
+        <div>✊ 详情模式: 握拳关闭 (Close) | 👋 挥动切换 (Swipe)</div>
+      </div>
+    </div>
+
+    <div id="video-container">
+      <video id="webcam" autoplay playsinline></video>
+    </div>
+
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
