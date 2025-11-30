@@ -29,28 +29,28 @@ A revolutionary 3D interactive photo gallery that combines immersive WebGL graph
 - **Auto-Rotation**: Gentle spinning when idle
 - **Dynamic Lighting**: Enhanced visual atmosphere
 
-## 🚀 Quick Start
+## 🚀 Quick Start / 快速开始
 
-### Prerequisites
-- Node.js (version 16 or higher)
-- Modern web browser with WebGL support
-- Webcam (for gesture controls)
+### Prerequisites / 前置要求
+- Node.js (version 16 or higher / 版本16或更高)
+- Modern web browser with WebGL support / 支持WebGL的现代浏览器
+- Webcam (for gesture controls / 用于手势控制) / 摄像头
 
-### Installation
+### Installation / 安装
 
 ```bash
-# Clone the repository
+# Clone the repository / 克隆仓库
 git clone https://github.com/VAAN0524/memorytree.git
 cd memorytree
 
-# Install dependencies
+# Install dependencies / 安装依赖
 npm install
 
-# Start development server
+# Start development server / 启动开发服务器
 npm run dev
 ```
 
-### Usage
+### Usage / 使用方法
 
 1. **Launch the Application**
    ```bash
@@ -66,29 +66,29 @@ npm run dev
    - Begin with the crystal ball view
    - Use any pinch gesture to explode into the photo sphere
 
-## 🎯 Controls Guide
+## 🎯 Controls Guide / 操控指南
 
-### 🙌 Both Hands Controls (NEW)
-| Gesture | Action | Description |
+### 🙌 Both Hands Controls / 双手控制 (NEW)
+| Gesture / 手势 | Action / 操作 | Description / 描述 |
 |---------|--------|-------------|
-| **Hands Together** | **Zoom In** | Bring both hands together to shrink the photo sphere |
-| **Hands Apart** | **Zoom Out** | Separate both hands to expand the photo sphere |
-| **Hand Distance** | **Scale Control** | 3D distance between hands maps to zoom factor with smooth transitions |
+| **Hands Together / 双手合掌** | **Zoom In / 缩小** | Bring both hands together to shrink the photo sphere / 双手合掌缩小照片球体 |
+| **Hands Apart / 双手分开** | **Zoom Out / 放大** | Separate both hands to expand the photo sphere / 双手分开放大照片球体 |
+| **Hand Distance / 手部距离** | **Scale Control / 缩放控制** | 3D distance between hands maps to zoom factor with smooth transitions / 双手3D距离映射到缩放因子，支持平滑过渡 |
 
-### ✋ Right Hand Controls
-| Gesture | Action | Description |
+### ✋ Right Hand Controls / 右手控制
+| Gesture / 手势 | Action / 操作 | Description / 描述 |
 |---------|--------|-------------|
-| **Move** | **Rotate** | Move hand to rotate the photo sphere in 3D space |
-| **Pinch** | **Select** | Point and pinch to select/view a photo |
-| **Double Pinch** | **Detail Mode** | Quick double-pinch on a photo to enter full-screen view |
-| **Swipe Left/Right** | **Navigate** | In detail mode, swipe to switch between photos |
-| **Fist** | **Exit** | In detail mode, make a fist to return to sphere view |
+| **Move / 移动** | **Rotate / 旋转** | Move hand to rotate photo sphere in 3D space / 移动手掌在3D空间中旋转照片球体 |
+| **Pinch / 捏合** | **Select / 选择** | Point and pinch to select/view a photo / 指向照片并捏合以选择/查看 |
+| **Double Pinch / 双捏合** | **Detail Mode / 详情模式** | Quick double-pinch on a photo to enter full-screen view / 快速双捏合照片进入全屏视图 |
+| **Swipe Left/Right / 左右滑动** | **Navigate / 导航** | In detail mode, swipe to switch between photos / 详情模式下滑动切换照片 |
+| **Fist / 握拳** | **Exit / 退出** | In detail mode, make a fist to return to sphere view / 详情模式下握拳返回球体视图 |
 
-### 🖥️ Interface Features
-- **Control Panel**: Adjust settings in the top-right corner
-- **Immersive Camera**: Toggle webcam background for augmented reality effect
-- **Status Display**: Real-time gesture and system status information
-- **Cursor Indicator**: Visual feedback for hand tracking position
+### 🖥️ Interface Features / 界面功能
+- **Control Panel / 控制面板**: Adjust settings in the top-right corner / 在右上角调整设置
+- **Immersive Camera / 沉浸式相机**: Toggle webcam background for augmented reality effect / 切换摄像头背景以实现增强现实效果
+- **Status Display / 状态显示**: Real-time gesture and system status information / 实时手势和系统状态信息
+- **Cursor Indicator / 光标指示器**: Visual feedback for hand tracking position / 手部追踪位置的视觉反馈
 
 ## 🏗️ Technical Architecture
 
