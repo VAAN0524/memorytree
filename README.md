@@ -14,7 +14,7 @@ A revolutionary 3D interactive photo gallery that combines immersive WebGL graph
 ### 🎮 **Gesture-Controlled Interface**
 - **Hand Tracking**: MediaPipe-powered real-time hand detection
 - **Intuitive Controls**: Natural hand gestures for navigation
-- **Dual-Hand Support**: Left hand for zoom, right hand for rotation and selection
+- **Dual-Hand Support**: Both hands for zoom control, right hand for rotation and selection
 - **Fallback Mode**: Mouse controls when camera is unavailable
 
 ### 🌐 **3D Visualization**
@@ -68,10 +68,12 @@ npm run dev
 
 ## 🎯 Controls Guide
 
-### 🖐️ Left Hand Controls
+### 🙌 Both Hands Controls (NEW)
 | Gesture | Action | Description |
 |---------|--------|-------------|
-| **Pinch** | **Zoom** | Control sphere expansion - pinch to zoom out, open hand to zoom in |
+| **Hands Together** | **Zoom In** | Bring both hands together to shrink the photo sphere |
+| **Hands Apart** | **Zoom Out** | Separate both hands to expand the photo sphere |
+| **Hand Distance** | **Scale Control** | 3D distance between hands maps to zoom factor with smooth transitions |
 
 ### ✋ Right Hand Controls
 | Gesture | Action | Description |
@@ -224,7 +226,7 @@ We welcome contributions to enhance MemoryTree! Here's how you can help:
 5. Push to your fork and submit a pull request
 
 ### **Areas for Improvement**
-- **New Gestures**: Additional hand gesture controls
+- **Enhanced Gestures**: Additional two-hand and single-hand gesture controls
 - **Photo Organization**: Albums, categories, and metadata
 - **Visual Themes**: Customizable color schemes and effects
 - **Performance**: Optimization for low-end devices
