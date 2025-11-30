@@ -23,11 +23,17 @@ export class VisionManager {
     public leftHand: HandData;
     public rightHand: HandData;
 
+    // 新增：双手距离相关属性
+    private lastHandsDistance: number = 0;
+    public handsDistance: number = 0;
+    public handsDetectedBoth: boolean = false;
+
     public get isHandDetected(): boolean { return this.rightHand.detected || this.leftHand.detected; }
     public get gesture(): string { return this.rightHand.gesture; }
     public get cursorPosition(): {x: number, y: number} { return this.rightHand.detected ? this.rightHand.cursor : this.leftHand.cursor; }
     public get pinchDistance(): number { return this.leftHand.detected ? this.leftHand.pinchDistance : 0; }
     public get handRotationSpeed(): {x: number, y: number} { return this.rightHand.rotationSpeed; }
+    public get zoomFactor(): number { return this.handsDistance; }
 
     constructor(videoId: string) {
         this.video = document.getElementById(videoId) as HTMLVideoElement;
@@ -116,6 +122,41 @@ export class VisionManager {
 
             if (!this.leftHand.detected) this.resetHand(this.leftHand);
             if (!this.rightHand.detected) this.resetHand(this.rightHand);
+
+            // 计算双手距离用于缩放控制
+            this.calculateHandsDistance();
+        }
+    }
+
+    private calculateHandsDistance() {
+        if (this.leftHand.detected && this.rightHand.detected) {
+            // 计算双手之间的3D距离
+            const dx = this.leftHand.position.x - this.rightHand.position.x;
+            const dy = this.leftHand.position.y - this.rightHand.position.y;
+            const dz = this.leftHand.position.z - this.rightHand.position.z;
+
+            const currentDistance = Math.sqrt(dx*dx + dy*dy + dz*dz);
+
+            // 平滑距离变化，避免抖动
+            const smoothingFactor = 0.3;
+            this.handsDistance = this.handsDistance * (1 - smoothingFactor) + currentDistance * smoothingFactor;
+
+            this.handsDetectedBoth = true;
+
+            // 根据双手距离计算缩放因子
+            // 距离越近，缩放因子越小；距离越远，缩放因子越大
+            const minDistance = 0.15;  // 双手合掌时的最小距离
+            const maxDistance = 0.8;   // 双手分开时的最大距离
+
+            let normalizedDistance = (this.handsDistance - minDistance) / (maxDistance - minDistance);
+            normalizedDistance = Math.max(0, Math.min(1, normalizedDistance)); // 限制在0-1范围
+
+            // 反转映射：近距离(合掌) = 小缩放(缩小)，远距离(分开) = 大缩放(放大)
+            this.handsDistance = normalizedDistance;
+
+        } else {
+            this.handsDetectedBoth = false;
+            // 当只有一只手或没有手时，保持当前缩放状态，不做改变
         }
     }
 

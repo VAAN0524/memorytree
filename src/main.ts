@@ -80,11 +80,10 @@ const init = async () => {
 
             // 2. Sphere Mode (Main Exploration)
             else if (photoSystem.state === 'SPHERE') {
-                // Left Hand: Zoom / Scale (Pinch Distance)
-                if (leftHand.detected) {
-                    // Normalize pinch: 0 (closed) -> 1 (open)
-                    // We map this to expansion
-                    photoSystem.setExpansion(leftHand.pinchDistance);
+                // 双手合掌缩放控制 (Both Hands: Zoom / Scale)
+                if (visionManager.handsDetectedBoth) {
+                    // 双手距离控制缩放：合掌(小) -> 分开(大)
+                    photoSystem.setExpansion(visionManager.zoomFactor);
                 }
 
                 // Right Hand: Rotation (Movement)
@@ -148,7 +147,7 @@ const init = async () => {
 
             uiManager.updateStats(
                 isHandDetected,
-                leftHand.pinchDistance, // Zoom level
+                visionManager.handsDistance, // Hands distance zoom level
                 rightHand.gesture,      // Active gesture
                 photoSystem.state
             );

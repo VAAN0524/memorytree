@@ -36,6 +36,9 @@ export class PhotoSystem {
     private sphereRotation: THREE.Euler = new THREE.Euler();
     public sphereScale: number = 1.0;
 
+    // 保存进入详情模式前的球体大小
+    private savedSphereScale: number = 1.0;
+
     // Constants
     private readonly BASE_RADIUS = 15;
     private readonly BASE_PHOTO_SCALE = 3.1;
@@ -133,14 +136,23 @@ export class PhotoSystem {
     public setSphereLayout() {
         if (this.state === 'CRYSTAL_BALL') {
             this.explosionSystem.explode();
+            // 从水晶球状态进入时，使用默认大小
+            this.sphereScale = 1.0;
+        } else if (this.state === 'DETAIL') {
+            // 从详情模式返回时，恢复之前保存的大小
+            this.sphereScale = this.savedSphereScale;
         }
+
         this.state = 'SPHERE';
         this.selectedIndex = -1;
-        this.sphereScale = 1.0; // Normal size
     }
 
     public setDetailLayout(index: number) {
         if (index < 0 || index >= this.count) return;
+
+        // 保存当前球体大小
+        this.savedSphereScale = this.sphereScale;
+
         this.state = 'DETAIL';
         this.selectedIndex = index;
 
@@ -201,10 +213,11 @@ export class PhotoSystem {
     }
 
     public setExpansion(factor: number) {
-        // Factor 0..1 (Pinch distance)
+        // Factor 0..1 (双手距离缩放因子)
+        // 0 = 双手合掌(最小缩放), 1 = 双手完全分开(最大缩放)
         if (this.state === 'SPHERE') {
-             // Reduced max size by 15%
-             this.sphereScale = 0.5 + factor * 2.05;
+             // 调整缩放范围：最小0.3，最大2.5 (更自然的缩放范围)
+             this.sphereScale = 0.3 + factor * 2.2;
         }
     }
 

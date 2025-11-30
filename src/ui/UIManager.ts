@@ -70,11 +70,11 @@ export class UIManager {
         this.statsDiv = statsDiv;
     }
 
-    public updateStats(isHandDetected: boolean, pinchDist: number, gesture: string, state: string) {
+    public updateStats(isHandDetected: boolean, handsDistance: number, gesture: string, state: string) {
         if (this.statsDiv) {
              this.statsDiv.innerHTML = `
              Hand Detected: <span style="color:${isHandDetected?'lime':'red'}">${isHandDetected ? 'YES' : 'NO'}</span><br>
-             Zoom (Pinch): ${(pinchDist * 100).toFixed(0)}%<br>
+             Zoom (Hands): ${(handsDistance * 100).toFixed(0)}%<br>
              Gesture: <span style="color:yellow">${gesture}</span><br>
              State: <span style="color:cyan">${state}</span>
              `;
